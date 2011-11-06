@@ -1,0 +1,26 @@
+%h1 Listing products
+
+= search_form_for @q do |f|
+  = f.label :name_or_description_cont
+  = f.text_field :name_or_description_cont
+  = f.submit "Search"
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th
+    %th
+    %th
+
+  - @products.each do |product|
+    %tr
+      %td= product.name
+      %td= product.description
+      %td= link_to 'Show', product
+      %td= link_to 'Edit', edit_product_path(product)
+      %td= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Product', new_product_path
